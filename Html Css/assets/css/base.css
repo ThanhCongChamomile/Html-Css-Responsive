@@ -1,0 +1,224 @@
+:root {
+  --primary-color: #ee4d2d;
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #333;
+  --border-color: #dbdbdb;
+  --star-gold-color: #ffce3d;
+
+  --header-height: 119px;
+  --navbar-height: 32px;
+  --haeder-with-search-height: calc(var(--header-height) - var(--navbar-height));
+  --header-sort-bar-height: 46px;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+/* Reponsive */
+.grid__row {
+  /* những item nằm trong class này sẽ nằm trong một hàng ngang */
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+/* Test */
+.grid__column-2{
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 16.6667%;/* (100% / 12 cột )x2 (%) phải có phần trăm */
+}
+
+.grid__column-2-4{/* 24 là 12 cột đủ 5 sản phẩm */
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20%;
+}
+
+.grid__column-10{
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 83.3333%;  
+}
+
+/*/////////////////////////////////////////////////////////////*/
+
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes growth{
+  from{
+    transform: scale(var(--growth-from));
+  }
+  to{
+    transform: scale(var(--growth-to));
+  }
+}
+
+/* Modal */
+.modal {
+  /* --------Chung------ */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* ------------------- */
+  display: flex;
+  animation: fadeIn linear 0.1s;
+}
+
+.modal__overlay{
+  position: absolute;
+  width: 100%;/* 100% là kế thừa đúng bằng chiều rộng của th chứa nó */
+  height: 100%;
+  background-color:hsl(0, 0%, 0%, 0.4);
+  z-index: 1;
+}
+
+.modal__body{
+  --growth-from: 0.6;
+  --growth-to: 1;
+  margin: auto;
+  z-index: 2;/* so với lớp overlay(cùng cấp) thì z-index ai cao hơn thì nổi lên  */
+  animation: growth linear 0.2s;
+}
+
+/* btn style Đky */
+/* cái j chung thì css vào btn, riêng thì .btn.btn--primary */
+.btn{
+  min-width: 124px;/* đặt là min vì sau chữ dài ra sẽ bị lỗi */
+  height: 32px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.2rem; 
+  padding: 10px 0 0 0;
+  outline: none;
+  cursor: pointer;
+  color: var(--text-color);
+  background-color: var(--white-color);
+  display: inline-flex;
+  justify-content: center;
+}
+
+.btn.btn-normal:hover{ 
+  background-color: rgba(0,0,0,0.05);
+}
+
+.btn.btn-size-s{
+  height: 28px;
+  font-size: 1rem;
+  padding: 8px 8px;
+}
+
+.btn.btn--primary{/* muốn dùng cần có cả 2 class btn và btn--primary */
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+/* sau này khi có nút vô hiệu hóa */
+.btn.btn--disabled{
+  cursor: default;
+  /* filter:brightness(80%); *//* giảm độ sáng của nút khi bị disable */
+  background-color: #999;
+  color: #ccc;
+}
+
+/* Selection */
+.select-input{
+  position: relative;/* 12p30 video 70 */
+  min-width: 170px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 2px;
+  background-color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.select-input__label{
+  font-size: 1.2rem;    
+}
+
+.select-input__icon{
+  font-size: 1.2rem;
+  color: #4a4a4a;
+}
+
+.select-input:hover .select-input__list{
+  display: block;
+}
+.select-input__list{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22px;
+  border-radius: 2px;
+  background-color: var(--white-color);
+  padding: 8px 16px;
+  list-style: none;
+  display: none ;
+  z-index: 1;
+}
+.select-input__link{
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: block;
+  padding: 8px 0;
+}
+.select-input__link:hover{
+  color: var(--primary-color);
+}
+
+/* ////////////////////////////////////// */
+/* Pagination */
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-item{
+  list-style: none;
+  margin: 0 8px;
+}
+
+.pagination-item--active .pagination-item__link{
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+
+.pagination-item--active .pagination-item__link:hover{
+  background-color: #ed5c3f;
+}
+
+.pagination-item__link{
+  display: block;
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #939393;
+  min-width: 40px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 2px;
+}
